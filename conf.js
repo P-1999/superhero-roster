@@ -1,3 +1,5 @@
+var SpecReporter = require('jasmine-spec-reporter').SpecReporter;
+
 exports.config = {
     framework: 'jasmine2',
 
@@ -8,12 +10,28 @@ exports.config = {
     },
 
     specs: [
-        './test/login_spec.js',
-        './test/roster_spec.js',
-        './test/vote_spec.js'
+        './test/content_section_spec.js',
+        './test/nav_section_spec.js',
     ],
 
     jasmineNodeOpts: {
-        showColors: true 
+        showColors: true,
+
+        silent: true,
+        defaultTimeoutInterval: 360000,
+        print: function () {
+        }
+    },
+    logLevel: 'WARN',
+    onPrepare: function () {
+        jasmine.getEnv().addReporter(new SpecReporter({
+            spec: {
+                displayStacktrace: true
+            },
+            summary: {
+                displayDuration: false
+            }
+        }));
     }
+
 } 
